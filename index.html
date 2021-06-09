@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <form id="addtriplocationsform">
+      <input type="text" id="location1" name="location1" value="">
+      <button type="button" id="addlocationbutton" name="addlocationbutton"><p>Add Location</p></button>
+      <button type="button" id="finallocationbutton" name="finallocationbutton"><p>Final Location</p></button>
+    </form>
+  </body>
+<script type="text/javascript">
+let locations = [];
+document.getElementById("addlocationbutton").addEventListener("click", addLocation);
+document.getElementById("finallocationbutton").addEventListener("click", finalLocation);
+function addLocation() {
+  let button = document.getElementById("location1");
+  locations.push(button.value);
+  alert(locations);
+}
+</script>
+</html>
