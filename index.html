@@ -40,12 +40,15 @@ document.getElementById("finallocationbutton0").addEventListener("click", finalL
 function addLocationClick() {
   let locationQuantity = locations.length;
   pushNewLocation(locationQuantity);
+  convertInputToButton(locationQuantity);
   createNewInputField(locationQuantity);
   createNewPairButtons(locationQuantity);
 }
 function finalLocationClick() {
   let locationQuantity = locations.length;
   pushNewLocation(locationQuantity);
+  convertInputToButton(locationQuantity);
+  hidePreviousButtons(locationQuantity);
 }
 function pushNewLocation(locationQuantity) {
   let newLocation = document.getElementById("location" + locationQuantity);
@@ -78,12 +81,24 @@ function createNewPairButtons(locationQuantity) {
   newFinalLocationButton.name = "finallocationbutton" + (locationQuantity + 1);
   newFinalLocationButton.innerHTML = "<p>Final Location</p>";
   document.getElementById("addtriplocationsform").appendChild(newFinalLocationButton);
-  // Hide previous buttons
-  document.getElementById("addlocationbutton" + (locationQuantity)).style.visibility = "hidden";
-  document.getElementById("finallocationbutton" + (locationQuantity)).style.visibility = "hidden";
+  hidePreviousButtons(locationQuantity);
   // Add Click function to new buttons
   document.getElementById("addlocationbutton" + (locationQuantity + 1)).addEventListener("click", addLocationClick);
   document.getElementById("finallocationbutton" + (locationQuantity + 1)).addEventListener("click", finalLocationClick);
+}
+function convertInputToButton(locationQuantity) {
+  let inputToReplace = document.getElementById("location" + locationQuantity);
+  let replacementButton = document.createElement("button");
+  replacementButton.type = "button";
+  replacementButton.className = "form"
+  replacementButton.id = "namedLocationButton" + (locationQuantity);
+  replacementButton.name = "namedLocationButton" + (locationQuantity);
+  replacementButton.innerHTML = "<p>" + locations[locationQuantity] + "</p>";
+  document.getElementById("addtriplocationsform").replaceChild(replacementButton, inputToReplace);
+}
+function hidePreviousButtons(locationQuantity) {
+  document.getElementById("addlocationbutton" + (locationQuantity)).style.visibility = "hidden";
+  document.getElementById("finallocationbutton" + (locationQuantity)).style.visibility = "hidden";
 }
 </script>
 </html>
