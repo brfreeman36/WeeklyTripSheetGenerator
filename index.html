@@ -51,16 +51,16 @@ function finalLocationClick() {
   hidePreviousButtons(locationQuantity);
 }
 function pushNewLocation(locationQuantity) {
-  let newLocation = document.getElementById("location" + locationQuantity);
+  let newLocation = document.getElementById(`location${locationQuantity}`);
   locations.push(newLocation.value);
 }
 function createNewInputField(locationQuantity) {
   let newInputField = document.createElement("input");
   newInputField.type = "text";
   newInputField.className = "form"
-  newInputField.id = "location" + (locationQuantity + 1);
-  newInputField.name = "location" + (locationQuantity + 1);
-  newInputField.placeholder = "Location " + (locationQuantity + 1)
+  newInputField.id = `location${locationQuantity + 1}`;
+  newInputField.name = `location${locationQuantity + 1}`;
+  newInputField.placeholder = `Location ${locationQuantity + 1}`;
   document.getElementById("addtriplocationsform").appendChild(document.createElement("br"));
   document.getElementById("addtriplocationsform").appendChild(newInputField);
 }
@@ -69,36 +69,36 @@ function createNewPairButtons(locationQuantity) {
   let newAddLocationButton = document.createElement("button");
   newAddLocationButton.type = "button";
   newAddLocationButton.className = "form"
-  newAddLocationButton.id = "addlocationbutton" + (locationQuantity + 1);
-  newAddLocationButton.name = "addlocationbutton" + (locationQuantity + 1);
+  newAddLocationButton.id = `addlocationbutton${locationQuantity + 1}`;
+  newAddLocationButton.name = `addlocationbutton${locationQuantity + 1}`;
   newAddLocationButton.innerHTML = "<p>Add Location</p>";
   document.getElementById("addtriplocationsform").appendChild(newAddLocationButton);
   // Create new final location button
   let newFinalLocationButton = document.createElement("button");
   newFinalLocationButton.type = "button";
   newFinalLocationButton.className = "form"
-  newFinalLocationButton.id = "finallocationbutton" + (locationQuantity + 1);
-  newFinalLocationButton.name = "finallocationbutton" + (locationQuantity + 1);
+  newFinalLocationButton.id = `finallocationbutton${locationQuantity + 1}`;
+  newFinalLocationButton.name = `finallocationbutton${locationQuantity + 1}`;
   newFinalLocationButton.innerHTML = "<p>Final Location</p>";
   document.getElementById("addtriplocationsform").appendChild(newFinalLocationButton);
   hidePreviousButtons(locationQuantity);
   // Add Click function to new buttons
-  document.getElementById("addlocationbutton" + (locationQuantity + 1)).addEventListener("click", addLocationClick);
-  document.getElementById("finallocationbutton" + (locationQuantity + 1)).addEventListener("click", finalLocationClick);
+  document.getElementById(`addlocationbutton${locationQuantity + 1}`).addEventListener("click", addLocationClick);
+  document.getElementById(`finallocationbutton${locationQuantity + 1}`).addEventListener("click", finalLocationClick);
 }
 function convertInputToButton(locationQuantity) {
-  let inputToReplace = document.getElementById("location" + locationQuantity);
+  let inputToReplace = document.getElementById(`location${locationQuantity}`);
   let replacementButton = document.createElement("button");
   replacementButton.type = "button";
   replacementButton.className = "form"
-  replacementButton.id = "namedLocationButton" + (locationQuantity);
-  replacementButton.name = "namedLocationButton" + (locationQuantity);
-  replacementButton.innerHTML = "<p>" + locations[locationQuantity] + "</p>";
+  replacementButton.id = `namedLocationButton${locationQuantity}`;
+  replacementButton.name = `namedLocationButton${locationQuantity}`;
+  replacementButton.innerHTML = `<p>${(locations[locationQuantity])}</p>`;
   document.getElementById("addtriplocationsform").replaceChild(replacementButton, inputToReplace);
 }
 function hidePreviousButtons(locationQuantity) {
-  document.getElementById("addlocationbutton" + (locationQuantity)).style.visibility = "hidden";
-  document.getElementById("finallocationbutton" + (locationQuantity)).style.visibility = "hidden";
+  document.getElementById(`addlocationbutton${locationQuantity}`).style.visibility = "hidden";
+  document.getElementById(`finallocationbutton${locationQuantity}`).style.visibility = "hidden";
 }
 </script>
 </html>
