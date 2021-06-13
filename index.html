@@ -3,22 +3,79 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <style media="screen">
+      p {
+        margin: 0px 0px 0px 0px;
+      }
+      button {
+
+
+      }
+      input {
+
+      }
+      form {
+
+      }
+      .form {
+        margin: 0px 0px 0px 0px;
+
+      }
+    </style>
   </head>
   <body>
+
     <form id="addtriplocationsform">
-      <input type="text" id="location1" name="location1" value="">
-      <button type="button" id="addlocationbutton" name="addlocationbutton"><p>Add Location</p></button>
-      <button type="button" id="finallocationbutton" name="finallocationbutton"><p>Final Location</p></button>
+      <input type="text" class="form" id="location0" name="location0" value="">
+      <button type="button" class="form" id="addlocationbutton0" name="addlocationbutton0"><p>Add Location</p></button>
+      <button type="button" class="form" id="finallocationbutton0" name="finallocationbutton0"><p>Final Location</p></button>
     </form>
+
   </body>
 <script type="text/javascript">
 let locations = [];
-document.getElementById("addlocationbutton").addEventListener("click", addLocation);
-document.getElementById("finallocationbutton").addEventListener("click", finalLocation);
-function addLocation() {
-  let button = document.getElementById("location1");
-  locations.push(button.value);
-  alert(locations);
+document.getElementById("addlocationbutton0").addEventListener("click", addLocationClick);
+document.getElementById("finallocationbutton0").addEventListener("click", finalLocationClick);
+function addLocationClick() {
+  let locationQuantity = locations.length;
+  pushNewLocation(locationQuantity);
+  createNewInputField(locationQuantity);
+  createNewPairButtons(locationQuantity);
+}
+function finalLocationClick() {
+  let locationQuantity = locations.length;
+  pushNewLocation(locationQuantity);
+}
+function pushNewLocation(locationQuantity) {
+  let newLocation = document.getElementById("location" + locationQuantity);
+  locations.push(newLocation.value);
+}
+function createNewInputField(locationQuantity) {
+  let newInputField = document.createElement("input");
+  newInputField.type = "text";
+  newInputField.className = "form"
+  newInputField.id = "location" + (locationQuantity + 1);
+  newInputField.name = "location" + (locationQuantity + 1);
+  document.getElementById("addtriplocationsform").appendChild(document.createElement("br"));
+  document.getElementById("addtriplocationsform").appendChild(newInputField);
+}
+function createNewPairButtons(locationQuantity) {
+  let newAddLocationButton = document.createElement("button");
+  newAddLocationButton.type = "button";
+  newAddLocationButton.className = "form"
+  newAddLocationButton.id = "addlocationbutton" + (locationQuantity + 1);
+  newAddLocationButton.name = "addlocationbutton" + (locationQuantity + 1);
+  newAddLocationButton.innerHTML = "<p>Add Location</p>";
+  document.getElementById("addtriplocationsform").appendChild(newAddLocationButton);
+  let newFinalLocationButton = document.createElement("button");
+  newFinalLocationButton.type = "button";
+  newFinalLocationButton.className = "form"
+  newFinalLocationButton.id = "finallocationbutton" + (locationQuantity + 1);
+  newFinalLocationButton.name = "finallocationbutton" + (locationQuantity + 1);
+  newFinalLocationButton.innerHTML = "<p>Final Location</p>";
+  document.getElementById("addtriplocationsform").appendChild(newFinalLocationButton);
+  document.getElementById("addlocationbutton" + (locationQuantity + 1)).addEventListener("click", addLocationClick);
+  document.getElementById("finallocationbutton" + (locationQuantity + 1)).addEventListener("click", finalLocationClick);
 }
 </script>
 </html>
