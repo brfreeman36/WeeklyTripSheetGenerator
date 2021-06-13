@@ -15,10 +15,11 @@
 
       }
       form {
-
+        margin: 0px 0px 0px 0px;
       }
       .form {
-        margin: 0px 0px 0px 0px;
+
+        margin: 0px 5px 0px 5px;
 
       }
     </style>
@@ -26,7 +27,7 @@
   <body>
 
     <form id="addtriplocationsform">
-      <input type="text" class="form" id="location0" name="location0" value="">
+      <input type="text" class="form" id="location0" name="location0" placeholder="Home Location">
       <button type="button" class="form" id="addlocationbutton0" name="addlocationbutton0"><p>Add Location</p></button>
       <button type="button" class="form" id="finallocationbutton0" name="finallocationbutton0"><p>Final Location</p></button>
     </form>
@@ -56,10 +57,12 @@ function createNewInputField(locationQuantity) {
   newInputField.className = "form"
   newInputField.id = "location" + (locationQuantity + 1);
   newInputField.name = "location" + (locationQuantity + 1);
+  newInputField.placeholder = "Location " + (locationQuantity + 1)
   document.getElementById("addtriplocationsform").appendChild(document.createElement("br"));
   document.getElementById("addtriplocationsform").appendChild(newInputField);
 }
 function createNewPairButtons(locationQuantity) {
+  // Create new location button
   let newAddLocationButton = document.createElement("button");
   newAddLocationButton.type = "button";
   newAddLocationButton.className = "form"
@@ -67,6 +70,7 @@ function createNewPairButtons(locationQuantity) {
   newAddLocationButton.name = "addlocationbutton" + (locationQuantity + 1);
   newAddLocationButton.innerHTML = "<p>Add Location</p>";
   document.getElementById("addtriplocationsform").appendChild(newAddLocationButton);
+  // Create new final location button
   let newFinalLocationButton = document.createElement("button");
   newFinalLocationButton.type = "button";
   newFinalLocationButton.className = "form"
@@ -74,6 +78,10 @@ function createNewPairButtons(locationQuantity) {
   newFinalLocationButton.name = "finallocationbutton" + (locationQuantity + 1);
   newFinalLocationButton.innerHTML = "<p>Final Location</p>";
   document.getElementById("addtriplocationsform").appendChild(newFinalLocationButton);
+  // Hide previous buttons
+  document.getElementById("addlocationbutton" + (locationQuantity)).style.visibility = "hidden";
+  document.getElementById("finallocationbutton" + (locationQuantity)).style.visibility = "hidden";
+  // Add Click function to new buttons
   document.getElementById("addlocationbutton" + (locationQuantity + 1)).addEventListener("click", addLocationClick);
   document.getElementById("finallocationbutton" + (locationQuantity + 1)).addEventListener("click", finalLocationClick);
 }
