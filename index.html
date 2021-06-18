@@ -41,7 +41,7 @@ function finalLocationClick() {
   let locationQuantity = locations.length;
   pushNewLocation(locationQuantity);
   convertInputToButton(locationQuantity);
-  deletePreviousButtons(locationQuantity);
+  convertFinalButton(locationQuantity);
 }
 function pushNewLocation(locationQuantity) {
   let newLocation = document.getElementById(`location${locationQuantity}`);
@@ -84,14 +84,25 @@ function convertInputToButton(locationQuantity) {
   let replacementButton = document.createElement("button");
   replacementButton.type = "button";
   replacementButton.className = "form"
-  replacementButton.id = `namedLocationButton${locationQuantity}`;
-  replacementButton.name = `namedLocationButton${locationQuantity}`;
+  replacementButton.id = `namedlocationbutton${locationQuantity}`;
+  replacementButton.name = `namedlocationbutton${locationQuantity}`;
   replacementButton.innerHTML = `<p>${(locations[locationQuantity])}</p>`;
   document.getElementById("addtriplocationsform").replaceChild(replacementButton, inputToReplace);
 }
 function deletePreviousButtons(locationQuantity) {
   document.getElementById('addtriplocationsform').removeChild(document.getElementById(`addlocationbutton${locationQuantity}`));
   document.getElementById('addtriplocationsform').removeChild(document.getElementById(`finallocationbutton${locationQuantity}`));
+}
+function convertFinalButton(locationQuantity) {
+  let buttonToReplace = document.getElementById(`finallocationbutton${locationQuantity}`);
+  let replacementButton = document.createElement("button");
+  replacementButton.type = "button";
+  replacementButton.className = "form"
+  replacementButton.id = "completeroundbutton";
+  replacementButton.name = "completeroundbutton";
+  replacementButton.innerHTML = "<p>Complete Round</p>";
+  document.getElementById('addtriplocationsform').removeChild(document.getElementById(`addlocationbutton${locationQuantity}`));
+  document.getElementById("addtriplocationsform").replaceChild(replacementButton, buttonToReplace);
 }
 </script>
 </html>
