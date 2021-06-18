@@ -88,7 +88,7 @@ function convertInputToButton(locationQuantity) {
   replacementButton.name = `namedlocationbutton${locationQuantity}`;
   replacementButton.innerHTML = `<p>${(locations[locationQuantity])}</p>`;
   document.getElementById("addtriplocationsform").replaceChild(replacementButton, inputToReplace);
-  document.getElementById(`namedlocationbutton${locationQuantity}`).addEventListener("click", addToRound(locationQuantity));
+  document.getElementById(`namedlocationbutton${locationQuantity}`).addEventListener("click", addToRound);
 }
 function deletePreviousButtons(locationQuantity) {
   document.getElementById('addtriplocationsform').removeChild(document.getElementById(`addlocationbutton${locationQuantity}`));
@@ -106,9 +106,9 @@ function convertFinalButton(locationQuantity) {
   document.getElementById("addtriplocationsform").replaceChild(replacementButton, buttonToReplace);
   document.getElementById("completeroundbutton").addEventListener("click", completeRound);
 }
-function addToRound(x) {
+function addToRound() {
   let p = document.createElement("p");
-  p.textContent = document.getElementById(`namedlocationbutton${x}`.textContent);
+  p.textContent = "wart";
   document.body.appendChild(p);
 }
 function completeRound() {
