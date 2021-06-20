@@ -44,68 +44,68 @@ function finalLocationClick() {
   convertInputToButton(locationQuantity);
   convertFinalButton(locationQuantity);
 }
-function pushNewLocation(locationQuantity) {
-  let newLocation = document.getElementById(`location${locationQuantity}`);
+function pushNewLocation(arrIndex) {
+  let newLocation = document.getElementById(`location${arrIndex}`);
   locations.push(newLocation.value);
 }
-function createNewInput(locationQuantity) {
+function createNewInput(arrIndex) {
   let newInput = document.createElement("input");
   newInput.type = "text";
   newInput.className = "form"
-  newInput.id = `location${locationQuantity + 1}`;
-  newInput.name = `location${locationQuantity + 1}`;
-  newInput.placeholder = `Location ${locationQuantity + 1}`;
+  newInput.id = `location${arrIndex + 1}`;
+  newInput.name = `location${arrIndex + 1}`;
+  newInput.placeholder = `Location ${arrIndex + 1}`;
   document.getElementById("addtriplocations").appendChild(document.createElement("br"));
   document.getElementById("addtriplocations").appendChild(newInput);
 }
-function createNewPairButtons(locationQuantity) {
+function createNewPairButtons(arrIndex) {
   // Create new location button
   let newAddLocation = document.createElement("button");
   newAddLocation.type = "button";
   newAddLocation.className = "form"
-  newAddLocation.id = `addlocation${locationQuantity + 1}`;
-  newAddLocation.name = `addlocation${locationQuantity + 1}`;
+  newAddLocation.id = `addlocation${arrIndex + 1}`;
+  newAddLocation.name = `addlocation${arrIndex + 1}`;
   newAddLocation.innerHTML = "<p>Add Location</p>";
   document.getElementById("addtriplocations").appendChild(newAddLocation);
   // Create new final location button
   let newFinalLocation = document.createElement("button");
   newFinalLocation.type = "button";
   newFinalLocation.className = "form"
-  newFinalLocation.id = `finallocation${locationQuantity + 1}`;
-  newFinalLocation.name = `finallocation${locationQuantity + 1}`;
+  newFinalLocation.id = `finallocation${arrIndex + 1}`;
+  newFinalLocation.name = `finallocation${arrIndex + 1}`;
   newFinalLocation.innerHTML = "<p>Final Location</p>";
   document.getElementById("addtriplocations").appendChild(newFinalLocation);
-  deletePreviousButtons(locationQuantity);
+  deletePreviousButtons(arrIndex);
   // Add Click function to new buttons
-  document.getElementById(`addlocation${locationQuantity + 1}`).addEventListener("click", addLocationClick);
-  document.getElementById(`finallocation${locationQuantity + 1}`).addEventListener("click", finalLocationClick);
+  document.getElementById(`addlocation${arrIndex + 1}`).addEventListener("click", addLocationClick);
+  document.getElementById(`finallocation${arrIndex + 1}`).addEventListener("click", finalLocationClick);
 }
-function convertInputToButton(locationQuantity) {
-  let inputToReplace = document.getElementById(`location${locationQuantity}`);
+function convertInputToButton(arrIndex) {
+  let inputToReplace = document.getElementById(`location${arrIndex}`);
   let replacement = document.createElement("button");
   replacement.type = "button";
   replacement.className = "form"
-  replacement.id = `namedlocation${locationQuantity}`;
-  replacement.name = `namedlocation${locationQuantity}`;
-  replacement.innerHTML = `<p>${(locations[locationQuantity])}</p>`;
+  replacement.id = `namedlocation${arrIndex}`;
+  replacement.name = `namedlocation${arrIndex}`;
+  replacement.innerHTML = `<p>${(locations[arrIndex])}</p>`;
   document.getElementById("addtriplocations").replaceChild(replacement, inputToReplace);
-  document.getElementById(`namedlocation${locationQuantity}`).addEventListener("click", function() {
-    addToRound(locationQuantity)
+  document.getElementById(`namedlocation${arrIndex}`).addEventListener("click", function() {
+    addToRound(arrIndex)
   });
 }
-function deletePreviousButtons(locationQuantity) {
-  document.getElementById('addtriplocations').removeChild(document.getElementById(`addlocation${locationQuantity}`));
-  document.getElementById('addtriplocations').removeChild(document.getElementById(`finallocation${locationQuantity}`));
+function deletePreviousButtons(arrIndex) {
+  document.getElementById('addtriplocations').removeChild(document.getElementById(`addlocation${arrIndex}`));
+  document.getElementById('addtriplocations').removeChild(document.getElementById(`finallocation${arrIndex}`));
 }
-function convertFinalButton(locationQuantity) {
-  let buttonToReplace = document.getElementById(`finallocation${locationQuantity}`);
+function convertFinalButton(arrIndex) {
+  let buttonToReplace = document.getElementById(`finallocation${arrIndex}`);
   let replacement = document.createElement("button");
   replacement.type = "button";
   replacement.className = "form"
   replacement.id = "completeround";
   replacement.name = "completeround";
   replacement.innerHTML = "<p>Complete Round</p>";
-  document.getElementById('addtriplocations').removeChild(document.getElementById(`addlocation${locationQuantity}`));
+  document.getElementById('addtriplocations').removeChild(document.getElementById(`addlocation${arrIndex}`));
   document.getElementById("addtriplocations").replaceChild(replacement, buttonToReplace);
   document.getElementById("completeround").addEventListener("click", completeRound);
 }
