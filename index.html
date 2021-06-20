@@ -16,18 +16,38 @@
       #buildround {
         border-style: solid;
       }
-      #displayround {
-         display:flex;
-         flex-direction: row;
-         flex:auto;
+      .displayround {
+         column-width: 8em;
 
       }
       .displayround > p {
-        display:flex;
-        flex: 0 1 auto;
-        width: 50%;
+
+
         justify-content: center;
       }
+    </style>
+    <style media="print">
+    p {
+      margin: 0px 0px 0px 0px;
+    }
+    form {
+      margin: 0px 0px 0px 0px;
+    }
+    .form {
+      margin: 0px 5px 0px 5px;
+    }
+    #buildround {
+      border-style: solid;
+    }
+    .displayround {
+       column-width: 8em;
+
+    }
+    .displayround > p {
+
+
+      justify-content: center;
+    }
     </style>
   </head>
   <body>
