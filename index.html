@@ -109,10 +109,10 @@ function convertFinalButton(arrIndex) {
   document.getElementById("addtriplocations").replaceChild(replacement, buttonToReplace);
   document.getElementById("completeround").addEventListener("click", completeRound);
 }
-function addToRound(x) {
+function addToRound(arrIndex) {
   let p = document.createElement("p");
-  round.push(locations[x]);
-  p.textContent = `${locations[x]}`;
+  round.push(locations[arrIndex]);
+  p.textContent = `${locations[arrIndex]}`;
   document.body.appendChild(p);
 }
 function completeRound() {
