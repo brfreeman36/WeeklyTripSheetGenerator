@@ -19,22 +19,23 @@
   </head>
   <body>
 
-    <form id="addtriplocationsform">
+    <form id="addtriplocations">
       <input type="text" class="form" id="location0" name="location0" placeholder="Home Location">
-      <button type="button" class="form" id="addlocationbutton0" name="addlocationbutton0"><p>Add Location</p></button>
-      <button type="button" class="form" id="finallocationbutton0" name="finallocationbutton0"><p>Final Location</p></button>
+      <button type="button" class="form" id="addlocation0" name="addlocation0"><p>Add Location</p></button>
+      <button type="button" class="form" id="finallocation0" name="finallocation0"><p>Final Location</p></button>
     </form>
 
   </body>
 <script type="text/javascript">
 let locations = [];
-document.getElementById("addlocationbutton0").addEventListener("click", addLocationClick);
-document.getElementById("finallocationbutton0").addEventListener("click", finalLocationClick);
+let round = [];
+document.getElementById("addlocation0").addEventListener("click", addLocationClick);
+document.getElementById("finallocation0").addEventListener("click", finalLocationClick);
 function addLocationClick() {
   let locationQuantity = locations.length;
   pushNewLocation(locationQuantity);
   convertInputToButton(locationQuantity);
-  createNewInputField(locationQuantity);
+  createNewInput(locationQuantity);
   createNewPairButtons(locationQuantity);
 }
 function finalLocationClick() {
@@ -47,72 +48,79 @@ function pushNewLocation(locationQuantity) {
   let newLocation = document.getElementById(`location${locationQuantity}`);
   locations.push(newLocation.value);
 }
-function createNewInputField(locationQuantity) {
-  let newInputField = document.createElement("input");
-  newInputField.type = "text";
-  newInputField.className = "form"
-  newInputField.id = `location${locationQuantity + 1}`;
-  newInputField.name = `location${locationQuantity + 1}`;
-  newInputField.placeholder = `Location ${locationQuantity + 1}`;
-  document.getElementById("addtriplocationsform").appendChild(document.createElement("br"));
-  document.getElementById("addtriplocationsform").appendChild(newInputField);
+function createNewInput(locationQuantity) {
+  let newInput = document.createElement("input");
+  newInput.type = "text";
+  newInput.className = "form"
+  newInput.id = `location${locationQuantity + 1}`;
+  newInput.name = `location${locationQuantity + 1}`;
+  newInput.placeholder = `Location ${locationQuantity + 1}`;
+  document.getElementById("addtriplocations").appendChild(document.createElement("br"));
+  document.getElementById("addtriplocations").appendChild(newInput);
 }
 function createNewPairButtons(locationQuantity) {
   // Create new location button
-  let newAddLocationButton = document.createElement("button");
-  newAddLocationButton.type = "button";
-  newAddLocationButton.className = "form"
-  newAddLocationButton.id = `addlocationbutton${locationQuantity + 1}`;
-  newAddLocationButton.name = `addlocationbutton${locationQuantity + 1}`;
-  newAddLocationButton.innerHTML = "<p>Add Location</p>";
-  document.getElementById("addtriplocationsform").appendChild(newAddLocationButton);
+  let newAddLocation = document.createElement("button");
+  newAddLocation.type = "button";
+  newAddLocation.className = "form"
+  newAddLocation.id = `addlocation${locationQuantity + 1}`;
+  newAddLocation.name = `addlocation${locationQuantity + 1}`;
+  newAddLocation.innerHTML = "<p>Add Location</p>";
+  document.getElementById("addtriplocations").appendChild(newAddLocation);
   // Create new final location button
-  let newFinalLocationButton = document.createElement("button");
-  newFinalLocationButton.type = "button";
-  newFinalLocationButton.className = "form"
-  newFinalLocationButton.id = `finallocationbutton${locationQuantity + 1}`;
-  newFinalLocationButton.name = `finallocationbutton${locationQuantity + 1}`;
-  newFinalLocationButton.innerHTML = "<p>Final Location</p>";
-  document.getElementById("addtriplocationsform").appendChild(newFinalLocationButton);
+  let newFinalLocation = document.createElement("button");
+  newFinalLocation.type = "button";
+  newFinalLocation.className = "form"
+  newFinalLocation.id = `finallocation${locationQuantity + 1}`;
+  newFinalLocation.name = `finallocation${locationQuantity + 1}`;
+  newFinalLocation.innerHTML = "<p>Final Location</p>";
+  document.getElementById("addtriplocations").appendChild(newFinalLocation);
   deletePreviousButtons(locationQuantity);
   // Add Click function to new buttons
-  document.getElementById(`addlocationbutton${locationQuantity + 1}`).addEventListener("click", addLocationClick);
-  document.getElementById(`finallocationbutton${locationQuantity + 1}`).addEventListener("click", finalLocationClick);
+  document.getElementById(`addlocation${locationQuantity + 1}`).addEventListener("click", addLocationClick);
+  document.getElementById(`finallocation${locationQuantity + 1}`).addEventListener("click", finalLocationClick);
 }
 function convertInputToButton(locationQuantity) {
   let inputToReplace = document.getElementById(`location${locationQuantity}`);
-  let replacementButton = document.createElement("button");
-  replacementButton.type = "button";
-  replacementButton.className = "form"
-  replacementButton.id = `namedlocationbutton${locationQuantity}`;
-  replacementButton.name = `namedlocationbutton${locationQuantity}`;
-  replacementButton.innerHTML = `<p>${(locations[locationQuantity])}</p>`;
-  document.getElementById("addtriplocationsform").replaceChild(replacementButton, inputToReplace);
-  document.getElementById(`namedlocationbutton${locationQuantity}`).addEventListener("click", addToRound);
+  let replacement = document.createElement("button");
+  replacement.type = "button";
+  replacement.className = "form"
+  replacement.id = `namedlocation${locationQuantity}`;
+  replacement.name = `namedlocation${locationQuantity}`;
+  replacement.innerHTML = `<p>${(locations[locationQuantity])}</p>`;
+  document.getElementById("addtriplocations").replaceChild(replacement, inputToReplace);
+  document.getElementById(`namedlocation${locationQuantity}`).addEventListener("click", function() {
+    addToRound(locationQuantity)
+  });
 }
 function deletePreviousButtons(locationQuantity) {
-  document.getElementById('addtriplocationsform').removeChild(document.getElementById(`addlocationbutton${locationQuantity}`));
-  document.getElementById('addtriplocationsform').removeChild(document.getElementById(`finallocationbutton${locationQuantity}`));
+  document.getElementById('addtriplocations').removeChild(document.getElementById(`addlocation${locationQuantity}`));
+  document.getElementById('addtriplocations').removeChild(document.getElementById(`finallocation${locationQuantity}`));
 }
 function convertFinalButton(locationQuantity) {
-  let buttonToReplace = document.getElementById(`finallocationbutton${locationQuantity}`);
-  let replacementButton = document.createElement("button");
-  replacementButton.type = "button";
-  replacementButton.className = "form"
-  replacementButton.id = "completeroundbutton";
-  replacementButton.name = "completeroundbutton";
-  replacementButton.innerHTML = "<p>Complete Round</p>";
-  document.getElementById('addtriplocationsform').removeChild(document.getElementById(`addlocationbutton${locationQuantity}`));
-  document.getElementById("addtriplocationsform").replaceChild(replacementButton, buttonToReplace);
-  document.getElementById("completeroundbutton").addEventListener("click", completeRound);
+  let buttonToReplace = document.getElementById(`finallocation${locationQuantity}`);
+  let replacement = document.createElement("button");
+  replacement.type = "button";
+  replacement.className = "form"
+  replacement.id = "completeround";
+  replacement.name = "completeround";
+  replacement.innerHTML = "<p>Complete Round</p>";
+  document.getElementById('addtriplocations').removeChild(document.getElementById(`addlocation${locationQuantity}`));
+  document.getElementById("addtriplocations").replaceChild(replacement, buttonToReplace);
+  document.getElementById("completeround").addEventListener("click", completeRound);
 }
-function addToRound() {
+function addToRound(x) {
   let p = document.createElement("p");
-  p.textContent = "wart";
+  round.push(locations[x]);
+  p.textContent = `${locations[x]}`;
   document.body.appendChild(p);
 }
 function completeRound() {
-
+  round.forEach(function(item) {
+    let p = document.createElement("p")
+    p.textContent = `${item}`;
+    document.body.appendChild(p);
+  });
 }
 </script>
 </html>
