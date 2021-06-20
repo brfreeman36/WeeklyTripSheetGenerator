@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Weekly Trip Sheet Generator</title>
     <style media="screen">
       p {
         margin: 0px 0px 0px 0px;
@@ -13,6 +13,10 @@
       .form {
 
         margin: 0px 5px 0px 5px;
+
+      }
+      #buildround {
+        border-style: solid;
 
       }
     </style>
@@ -105,21 +109,29 @@ function convertFinalButton(arrIndex) {
   replacement.id = "completeround";
   replacement.name = "completeround";
   replacement.innerHTML = "<p>Complete Round</p>";
+  let buildRound = document.createElement("div");
+  buildRound.className = "buildround";
+  buildRound.id = "buildround";
+  let displayRound = document.createElement("div");
+  displayRound.className = "displayround";
+  displayRound.id = "displayround";
   document.getElementById('addtriplocations').removeChild(document.getElementById(`addlocation${arrIndex}`));
   document.getElementById("addtriplocations").replaceChild(replacement, buttonToReplace);
   document.getElementById("completeround").addEventListener("click", completeRound);
+  document.body.appendChild(buildRound);
+  document.body.appendChild(displayRound);
 }
 function addToRound(arrIndex) {
   let p = document.createElement("p");
   round.push(locations[arrIndex]);
   p.textContent = `${locations[arrIndex]}`;
-  document.body.appendChild(p);
+  document.getElementById("buildround").appendChild(p);
 }
 function completeRound() {
   round.forEach(function(item) {
     let p = document.createElement("p")
     p.textContent = `${item}`;
-    document.body.appendChild(p);
+    document.getElementById("displayround").appendChild(p);
   });
 }
 </script>
