@@ -11,10 +11,15 @@
         margin: 0px 0px 0px 0px;
       }
       .form {
-        margin: 0px 5px 0px 5px;
+        margin: 5px 5px 5px 5px;
+
       }
       #buildround {
         border-style: solid;
+        margin: 5px;
+      }
+      #buildround > p {
+        margin: 3px;
       }
       .displayround {
         display: grid;
@@ -26,6 +31,9 @@
         border-style: solid;
         border-width: 1px 1px 1px 1px;
         justify-content: center;
+      }
+      .tabletitles {
+        text-align: center;
       }
     </style>
     <style media="print">
@@ -52,6 +60,9 @@
       border-style: solid;
       border-width: 1px 1px 1px 1px;
       justify-content: center;
+    }
+    .tabletitles {
+      text-align: center;
     }
     </style>
   </head>
@@ -197,30 +208,39 @@ function completeRound() {
 }
 function tableTitles() {
   let date = document.createElement("p");
+  date.className = "tabletitles"
   date.textContent = "DATE";
   document.getElementById("displayround").appendChild(date);
   let firstLocation = document.createElement("p");
+  firstLocation.className = "tabletitles"
   firstLocation.textContent = "FROM";
   document.getElementById("displayround").appendChild(firstLocation);
   let secondLocation = document.createElement("p");
+  secondLocation.className = "tabletitles"
   secondLocation.textContent = "TO";
   document.getElementById("displayround").appendChild(secondLocation);
   let trailer = document.createElement("p");
+  trailer.className = "tabletitles"
   trailer.textContent = "TRAILER #";
   document.getElementById("displayround").appendChild(trailer);
   let startingMileage = document.createElement("p");
+  startingMileage.className = "tabletitles"
   startingMileage.textContent = "BEGINNING OD";
   document.getElementById("displayround").appendChild(startingMileage);
   let state = document.createElement("p");
+  state.className = "tabletitles"
   state.textContent = "ST";
   document.getElementById("displayround").appendChild(state);
   let empty = document.createElement("p");
+  empty.className = "tabletitles"
   empty.textContent = "E";
   document.getElementById("displayround").appendChild(empty);
   let loaded = document.createElement("p");
+  loaded.className = "tabletitles"
   loaded.textContent = "L";
   document.getElementById("displayround").appendChild(loaded);
   let endingMileage = document.createElement("p");
+  endingMileage.className = "tabletitles"
   endingMileage.textContent = "ENDING OD";
   document.getElementById("displayround").appendChild(endingMileage);
 }
