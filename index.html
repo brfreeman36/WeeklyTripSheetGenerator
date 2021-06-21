@@ -23,7 +23,7 @@
       }
       .displayround {
         display: grid;
-        grid: auto-flow / .7fr 2.5fr 2.5fr 1fr 1.2fr .3fr .3fr .3fr 1.2fr;
+        grid: auto-flow / .5fr 2.3fr 2.3fr .9fr 1.2fr .3fr .3fr .3fr 1.2fr;
         gap: 0px;
       }
       .displayround > p {
@@ -51,7 +51,7 @@
     }
     .displayround {
       display: grid;
-      grid: auto-flow / .7fr 2.5fr 2.5fr 1fr 1.2fr .3fr .3fr .3fr 1.2fr;
+      grid: auto-flow / .5fr 2.3fr 2.3fr .9fr 1.2fr .3fr .3fr .3fr 1.2fr;
       gap: 0px;
     }
     .displayround > p {
@@ -80,6 +80,7 @@ let locations = [];
 let round = [];
 document.getElementById("addlocation0").addEventListener("click", addLocationClick);
 document.getElementById("finallocation0").addEventListener("click", finalLocationClick);
+
 function addLocationClick() {
   let locationQuantity = locations.length;
   pushNewLocation(locationQuantity);
@@ -146,6 +147,7 @@ function deletePreviousButtons(arrIndex) {
   document.getElementById('addtriplocations').removeChild(document.getElementById(`addlocation${arrIndex}`));
   document.getElementById('addtriplocations').removeChild(document.getElementById(`finallocation${arrIndex}`));
 }
+// Delete Add Location button and change final location button to complete round button
 function convertFinalButton(arrIndex) {
   let buttonToReplace = document.getElementById(`finallocation${arrIndex}`);
   let replacement = document.createElement("button");
@@ -154,9 +156,11 @@ function convertFinalButton(arrIndex) {
   replacement.id = "completeround";
   replacement.name = "completeround";
   replacement.innerHTML = "<p>Complete Round</p>";
+  // Create container that displays selected locations to be added to round
   let buildRound = document.createElement("div");
   buildRound.className = "buildround";
   buildRound.id = "buildround";
+  // Create container for grid
   let displayRound = document.createElement("div");
   displayRound.className = "displayround";
   displayRound.id = "displayround";
@@ -173,6 +177,7 @@ function addToRound(arrIndex) {
   p.textContent = `${locations[arrIndex]}`;
   document.getElementById("buildround").appendChild(p);
 }
+// Creates empty cells and populates relevant cells
 function completeRound() {
   round.forEach(function(item, index) {
     if (index < round.length - 1) {
@@ -206,6 +211,7 @@ function completeRound() {
     }
   });
 }
+// Populates titles for the table
 function tableTitles() {
   let date = document.createElement("p");
   date.className = "tabletitles"
