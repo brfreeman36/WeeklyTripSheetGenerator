@@ -18,7 +18,7 @@
       }
       .displayround {
         display: grid;
-        grid: auto-flow / 1fr 3fr 3fr 1fr 1fr 1fr 1fr 1fr 1fr;
+        grid: auto-flow / .7fr 2.5fr 2.5fr 1fr 1.2fr .3fr .3fr .3fr 1.2fr;
         gap: 0px;
       }
       .displayround > p {
@@ -42,11 +42,13 @@
       display: none;
     }
     .displayround {
-       display: grid;
-       grid: auto-flow / 1fr 1fr 1fr;
+      display: grid;
+      grid: auto-flow / .7fr 2.5fr 2.5fr 1fr 1.2fr .3fr .3fr .3fr 1.2fr;
+      gap: 0px;
     }
     .displayround > p {
       padding: 5px;
+      font-size: 20px;
       border-style: solid;
       border-width: 1px 1px 1px 1px;
       justify-content: center;
@@ -152,6 +154,7 @@ function convertFinalButton(arrIndex) {
   document.getElementById("completeround").addEventListener("click", completeRound);
   document.body.appendChild(buildRound);
   document.body.appendChild(displayRound);
+  tableTitles();
 }
 function addToRound(arrIndex) {
   let p = document.createElement("p");
@@ -160,11 +163,66 @@ function addToRound(arrIndex) {
   document.getElementById("buildround").appendChild(p);
 }
 function completeRound() {
-  round.forEach(function(item) {
-    let p = document.createElement("p")
-    p.textContent = `${item}`;
-    document.getElementById("displayround").appendChild(p);
+  round.forEach(function(item, index) {
+    if (index < round.length - 1) {
+    let date = document.createElement("p");
+    date.textContent = "";
+    document.getElementById("displayround").appendChild(date);
+    let firstLocation = document.createElement("p");
+    firstLocation.textContent = `${item}`;
+    document.getElementById("displayround").appendChild(firstLocation);
+    let secondLocation = document.createElement("p");
+    secondLocation.textContent = `${round[index + 1]}`;
+    document.getElementById("displayround").appendChild(secondLocation);
+    let trailer = document.createElement("p");
+    trailer.textContent = "";
+    document.getElementById("displayround").appendChild(trailer);
+    let startingMileage = document.createElement("p");
+    startingMileage.textContent = "";
+    document.getElementById("displayround").appendChild(startingMileage);
+    let state = document.createElement("p");
+    state.textContent = "";
+    document.getElementById("displayround").appendChild(state);
+    let empty = document.createElement("p");
+    empty.textContent = "";
+    document.getElementById("displayround").appendChild(empty);
+    let loaded = document.createElement("p");
+    loaded.textContent = "";
+    document.getElementById("displayround").appendChild(loaded);
+    let endingMileage = document.createElement("p");
+    endingMileage.textContent = "";
+    document.getElementById("displayround").appendChild(endingMileage);
+    }
   });
+}
+function tableTitles() {
+  let date = document.createElement("p");
+  date.textContent = "DATE";
+  document.getElementById("displayround").appendChild(date);
+  let firstLocation = document.createElement("p");
+  firstLocation.textContent = "FROM";
+  document.getElementById("displayround").appendChild(firstLocation);
+  let secondLocation = document.createElement("p");
+  secondLocation.textContent = "TO";
+  document.getElementById("displayround").appendChild(secondLocation);
+  let trailer = document.createElement("p");
+  trailer.textContent = "TRAILER #";
+  document.getElementById("displayround").appendChild(trailer);
+  let startingMileage = document.createElement("p");
+  startingMileage.textContent = "BEGINNING OD";
+  document.getElementById("displayround").appendChild(startingMileage);
+  let state = document.createElement("p");
+  state.textContent = "ST";
+  document.getElementById("displayround").appendChild(state);
+  let empty = document.createElement("p");
+  empty.textContent = "E";
+  document.getElementById("displayround").appendChild(empty);
+  let loaded = document.createElement("p");
+  loaded.textContent = "L";
+  document.getElementById("displayround").appendChild(loaded);
+  let endingMileage = document.createElement("p");
+  endingMileage.textContent = "ENDING OD";
+  document.getElementById("displayround").appendChild(endingMileage);
 }
 </script>
 </html>
